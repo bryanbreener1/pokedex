@@ -1,0 +1,37 @@
+.home__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.home__img{
+    width: 50%;
+    margin: 0 auto;
+    min-width: 360px;
+}
+.home__title{
+    margin-top: 1rem;
+    color: rgb(250, 0, 0);
+    text-align: center;
+}
+.home__message{
+    text-align: center;
+}
+.home__form{
+    margin-top: 1rem;
+    text-align: center;
+    height: 25px;
+}
+.home__button{
+    background-color: rgb(250, 0, 0);
+    color: white;
+    border: none;
+    height: inherit;
+
+}
+.home__input{
+    height: inherit;
+    padding: 0;
+
+}

@@ -13,7 +13,18 @@ const PokedexName = () => {
   useEffect(() => {
     getPokemonByName()
   }, [name])
-  console.log(pokemon);
+
+  const rightUrlImage = () =>{
+    const urlImage = pokemon?.sprites.other['official-artwork'].front_default
+    if(urlImage){
+      const splited = urlImage.split('https://')
+      if(splited.length === 3){
+        return "https://"+splited[2]
+      }
+      return "https://"+splited[1]
+    }
+  }
+
   return (
     <div>
       <TopDesign/>
@@ -25,7 +36,9 @@ const PokedexName = () => {
             <div className={`pokemon ${pokemon?.types[0].type.name}`}>
               <section className='pokemon__card'>
                 <header className={`pokemon__header ${pokemon?.types[0].type.name}`}>
-                  <img className='pokemon__img' src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
+                {
+                  pokemon && <img className='pokemon__img' src={rightUrlImage()} alt="" />
+                }
                 </header>
                 <div className='pokemon__title'>
                   <p className='pokemon__id'>#{pokemon?.id}</p>

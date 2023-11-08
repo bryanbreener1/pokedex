@@ -5,19 +5,33 @@ import './styles/Pokecard.css'
 
 const PokeCard = ({url}) => {
     const [pokemon, getPokemonById] = useFetch(url)
-    console.log(pokemon);
     useEffect(() => {
         getPokemonById()
     }, [])
+
     const navigate = useNavigate()
 
     const handleNavigate = () =>{
       navigate(`/pokedex/${pokemon?.name}`)
-     }
+    }
+
+    const rightUrlImage = () =>{
+      const urlImage = pokemon?.sprites.other['official-artwork'].front_default
+      if(urlImage){
+        const splited = urlImage.split('https://')
+        if(splited.length === 3){
+          return "https://"+splited[2]
+        }
+        return "https://"+splited[1]
+      }
+    }
+
   return (
     <article className={`pokecard ${pokemon?.types[0].type.name}`} onClick={handleNavigate}>
         <header className='pokecard__header'>
-            <img className='pokecard__img' src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
+          {
+            pokemon && <img className='pokecard__img' src={rightUrlImage()} alt="" />
+          }
         </header>
         <section className='pokecard__body'>
           <h3 className='pokecard__name'>{pokemon?.name}</h3>
@@ -42,7 +56,6 @@ const PokeCard = ({url}) => {
             </ul>
           </footer>
     </article>
-  )
+    )
 }
-
 export default PokeCard

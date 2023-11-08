@@ -16,6 +16,8 @@ const Pokedex = () => {
 
   const [ pokemons, getAllPokemons, hasError, setPokemons] = useFetch(url)
   const [ types, getAllTypes] = useFetch(urlTypes)
+  console.log(types, 'soy types');
+  console.log(pokemons?.results, 'soy pokemon de pokedez');
 
   useEffect(() => {
     if(selectValue === 'all-pokemons'){
@@ -61,13 +63,12 @@ const Pokedex = () => {
           <button className='pokedex__button'>Search</button>
         </form>
         <select className='pokedex__select' onChange={handleChangeType}>
-          <option value="all_pokemon">All pokemons</option>
+          <option value="all-pokemons">All pokemons</option>
           {
             types?.results.map( type => (
               <option className='pokedex__options' key={type.url} value={type.url}>{type.name}</option>
             ))
           }
-
         </select>
         <PokeContainer pokemons={pokemons?.results}/>
       </div>

@@ -16,8 +16,7 @@ const Pokedex = () => {
 
   const [ pokemons, getAllPokemons, hasError, setPokemons] = useFetch(url)
   const [ types, getAllTypes] = useFetch(urlTypes)
-  console.log(types, 'soy types');
-  console.log(pokemons?.results, 'soy pokemon de pokedez');
+
 
   useEffect(() => {
     if(selectValue === 'all-pokemons'){
